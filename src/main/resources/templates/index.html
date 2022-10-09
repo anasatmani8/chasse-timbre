@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listes des clients</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div style="margin-left: 100px;" class="container my-2">
+
+		<h1 style="text-align: center; margin-top: 30px;">Registre des
+			licences de chasse delivrees aux chasseurs</h1>
+
+
+	</div>
+	<div style="margin-left: 0px;" class="container my-2 group">
+
+		<form th:action="@{/chercherChasseurNom}" method="get">
+			<label>Mot Cle :</label> <input placeholder="Chercher par nom"
+				type="text" name="mc1" th:value="${mc1}">
+			<button class="btn btn-primary">Chercher</button>
+		</form>
+		<br>
+		<form th:action="@{/chercherChasseurPermis}" method="get">
+			<label>Mot Cle :</label> <input placeholder="Chercher par permis"
+				type="text" name="mc2" th:value="${mc2}">
+			<button class="btn btn-primary">Chercher</button>
+		</form>
+	</div>
+	<a style="margin-left: 600px;" th:href="@{'/afficherAjoutClient'}"
+		class="btn btn-primary btn-sm mb-3"> Ajouter nouveau chasseur </a>
+	<table style="margin-left: 3px;" border="1"
+		class="table table-striped table-responsive-md responsive">
+		<thead>
+			<tr>
+
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Numero PPAAC</th>
+
+				<th>Gibier sedentaire <br> Num Serie
+				</th>
+				<th>Gibier migrateur<br> Num Serie
+				</th>
+				<th>Touristique <br>Num Serie
+				</th>
+				<th style="padding-right: 40px; padding-left: 40px;">Saison</th>
+				<th style="text-align: center;">Actions</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="client :${listClient}">
+
+
+
+				<td th:if="${client.nom}=='-------'" style="color: red;"
+					th:text="-----------"></td>
+				<td th:if="${client.nom}!='-------'" th:text="${client.nom}"></td>
+
+				<td th:if="${client.prenom}=='-------'" style="color: red;"
+					th:text="-----------------"></td>
+				<td th:if="${client.prenom}!='-------'" th:text="${client.prenom}"></td>
+
+				<td th:if="${client.permis}=='-------'" style="color: red;"
+					th:text="------------------"></td>
+				<td th:if="${client.permis}!='-------'" th:text="${client.permis}"></td>
+
+				<td th:if="${client.Gibier_sedentaire}=='-------'"
+					style="color: red;" th:text="------------------"></td>
+				<td th:if="${client.Gibier_sedentaire}!='-------'"
+					th:text="${client.Gibier_sedentaire}"></td>
+
+				<td th:if="${client.Gibier_migrateur}=='-------'"
+					style="color: red;" th:text="------------------"></td>
+				<td th:if="${client.Gibier_migrateur}!='-------'"
+					th:text="${client.Gibier_migrateur}"></td>
+
+				<td th:if="${client.Touristique}=='-------'" style="color: red;"
+					th:text="------------------"></td>
+				<td th:if="${client.Touristique}!='-------'"
+					th:text="${client.Touristique}"></td>
+
+				<td th:if="${client.saison}=='-------'" style="color: red;"
+					th:text="--------------"></td>
+				<td scope="row" th:if="${client.saison}!='-------'"
+					th:text="${client.saison}"></td>
+
+				<td style="border: none;" class="btn-group"
+					th:if="${client.saison}!='-------'"><a
+					th:href="@{/modifierChasseurForm(id=${client.id})}"
+					class="btn btn-primary ">Update </a> <a class="btn btn-danger ">Delete
+				</a> <a th:href="@{/ajoutPourMemeChasseur(id=${client.id})}"
+					class="btn btn-light">+ timbre</a></td>
+
+				<td th:if="${client.saison}=='-------'"><a style="color: red;"
+					th:text="--------------------------------------"> </a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{'/afficherListTimbres'}"
+		style="margin-left: 500px; padding-left: 10px; padding-right: 10px;"
+		type="button" class="btn btn-success">Consulter la somme en
+		details</a>
+
+	<strong style="font-size: 36px; margin-left: 0px;" th:text="${somme} ">
+	</strong>
+	<strong style="font-size: 36px; margin-top: 5px;">DH</strong>
+
+
+
+</body>
+</html>

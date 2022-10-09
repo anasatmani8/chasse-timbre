@@ -1,0 +1,19 @@
+{
+  "name": "chasse",
+  "version": "1.0.0",
+  "description": "\"TEST OF NPM NODE AND GIT \"",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anasatmani8/chasse-timbre.git"
+  },
+  "author": "anas atmani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anasatmani8/chasse-timbre/issues"
+  },
+  "homepage": "https://github.com/anasatmani8/chasse-timbre#readme"
+}
